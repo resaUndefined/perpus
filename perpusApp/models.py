@@ -78,7 +78,7 @@ class Katalog(models.Model):
     thn_terbit = models.CharField(max_length=4,null=True)
     foto_sampul = models.ImageField(upload_to='statis/image_katalog',
                                     blank=True, null=True)
-    penerbit = models.ForeignKey(Penerbit, related_name='penerbit_katalog'
+    penerbit = models.ForeignKey(Penerbit, related_name='penerbit_katalog',
                                  null=True)
     penulis = models.ForeignKey(Penulis, related_name='penulis_katalog',
                                 null=True)
@@ -133,13 +133,16 @@ class Sirkulasi(models.Model):
 		return self.kd_sirkulasi
 
 
-	class Detail_Sirkulasi(models.Model):
-		sirkulasi = models.ForeignKey(Sirkulasi,
-			related_name='detail_sirkulasi', null=True)
-		buku = models.ForeignKey(Buku, related_name='detail_buku',null=True)
+class Detail_Sirkulasi(models.Model):
+	sirkulasi = models.ForeignKey(Sirkulasi,
+			related_name='sirkulasi_detail', null=True)
+	buku = models.ForeignKey(Buku, related_name='detail_buku',null=True)
 
-		class Meta:
+	class Meta:
 			verbose_name_plural = "Detail_Sirkulasi"
+
+	def __unicode__(self):
+			return self.sirkulasi
 
 
 
