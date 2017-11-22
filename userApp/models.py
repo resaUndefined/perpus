@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 import datetime
 
 # Create your models here.
@@ -37,18 +38,13 @@ class Anggota(models.Model):
     agama = models.CharField('Agama', max_length=20,choices=AGAMA_CHOICES,
     						default='islam', null=True, blank=True)
     alamat = models.TextField(blank=True, null=True)
-    email = models.EmailField(max_length=100)
     foto = models.ImageField(upload_to='statis/image_anggota',
                              blank=True, null=True)
-    user_id = models.CharField(max_length=15)
-    pass_id = models.CharField(max_length=15)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     ttl = models.DateField('Tanggal Lahir', max_length=8, null=True,blank=True)
-    status = models.CharField('Status', max_length=15,choices=STATUS_CHOICES,
-    						default='1',null=True, blank=True)
-
+    
     class Meta:
     	verbose_name_plural = "Anggota"
-
 
     def __unicode__(self):
     	return self.nama
@@ -57,9 +53,7 @@ class Anggota(models.Model):
 class Petugas(models.Model):
 	kd_petugas = models.CharField(max_length=10,unique=True)
 	nama = models.CharField(max_length=100, null=True, blank=True)
-	user_id = models.CharField(max_length=20)
-	pass_id = models.CharField(max_length=20)
-	email = models.EmailField(max_length=100)
+	user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 	jk = models.CharField('Jenis Kelamin',max_length=20,choices=JK_CHOICES,
 						default='laki', null=True, blank=True)
 	alamat = models.TextField(blank=True,null=True)
@@ -69,7 +63,6 @@ class Petugas(models.Model):
 
 	class Meta:
 		verbose_name_plural = "Petugas"
-
 
 	def __unicode__(self):
 		return self.nama

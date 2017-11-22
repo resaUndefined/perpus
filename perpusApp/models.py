@@ -23,6 +23,13 @@ STATUS_CHOICES = (
 	('dipinjam','Dipinjam'),
 	)
 
+STATUS_PINJAM_CHOICES = (
+	('pesan','Dipesan'),
+	('pinjam','Dipinjam'),
+	('kembali','Kembali'),
+	('telat','Telat'),
+	)
+
 KONDISI_CHOICES = (
 	('baik','Baik'),
 	('rusak','Rusak'),
@@ -118,13 +125,15 @@ class Sirkulasi(models.Model):
 	tgl_pesan = models.DateField(null=True,blank=True)
 	petugas = models.ForeignKey(Petugas, related_name='petugas_sirkulasi',
 		null=True)
+	buku = models.ManyToManyField(Buku)
 	tgl_pinjam = models.DateField(null=True,blank=True)
 	tgl_kembali = models.DateField(null=True,blank=True)
 	lama_pinjam = models.IntegerField(null=True,blank=True)
 	jumlah_pinjam = models.IntegerField(null=True)
 	denda = models.DecimalField(max_digits=20,decimal_places=2,
 		default=Decimal('0.00'),null=True,blank=True)
-	status = models.CharField(max_length=20, null=True,blank=True)
+	status = models.CharField('Status Sirkulasi',max_length=20, null=True,
+		choices=STATUS_PINJAM_CHOICES,blank=True)
 
 	class Meta:
 		verbose_name_plural = "Sirkulasi"
@@ -133,16 +142,16 @@ class Sirkulasi(models.Model):
 		return self.kd_sirkulasi
 
 
-class Detail_Sirkulasi(models.Model):
-	sirkulasi = models.ForeignKey(Sirkulasi,
-			related_name='sirkulasi_detail', null=True)
-	buku = models.ForeignKey(Buku, related_name='detail_buku',null=True)
-
-	class Meta:
-			verbose_name_plural = "Detail_Sirkulasi"
-
-	def __unicode__(self):
-			return self.sirkulasi
+#class Detail_Sirkulasi(models.Model):
+#	sirkulasi = models.ForeignKey(Sirkulasi,
+#			related_name='sirkulasi_detail', null=True)
+#	buku = models.ForeignKey(Buku, related_name='detail_buku',null=True)
+#
+#	class Meta:
+#			verbose_name_plural = "Detail_Sirkulasi"
+#
+#	def __unicode__(self):
+#			return self.sirkulasi
 
 
 
