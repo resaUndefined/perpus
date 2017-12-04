@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Dashboard</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2 col-md-offset-1">
+			<div class="dashboard">
+				<div class="list-group">
+				  <a href="/profile_view/" class="list-group-item">Profil Saya<i class="fa fa-chevron-right panah" aria-hidden="true"></i></a>
+				  <a href="/laporan_list/" class="list-group-item">Laporan Saya<i class="fa fa-chevron-right panah" aria-hidden="true"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<ol class="breadcrumb">
+			  <li><a href="/profile_view/">Profile</a></li>
+			  <li class="active">View</li>
+			</ol>
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			  	<ul class="action">
+			  		<li><a href="/profile_view/"><i class="fa fa-eye" aria-hidden="true"></i> View Profile</a></li>&emsp;&emsp;
+				  	<li><a href="/profile_edit/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</a></li>&emsp;&emsp;
+				  	<li><a href="/profile_change/"><i class="fa fa-cogs" aria-hidden="true"></i> Change Password</a></li>
+			  	</ul>
+			  </div>
+			  <div class="panel-body">
+			  	<h4>Profile :</h4>
+			  	<hr>
+			  	<form class="form-horizontal">
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">User Name:</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static">loremIpsum</p>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Email:</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static">loremIpsum@email.com</p>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Phone:</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static">0851927306489</p>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Display Name:</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static">loremIpsum</p>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Birth Date:</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static">28/02/1995</p>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Gender:</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static">L</p>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Address:</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static">Kepuh, Wedomartani, Ngemplak, Sleman, Yogyakarta</p>
+				    </div>
+				  </div>
+				</form>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

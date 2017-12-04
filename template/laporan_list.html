@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Dashboard</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2 col-md-offset-1">
+			<div class="dashboard">
+				<div class="list-group">
+				  <a href="/profile_view/" class="list-group-item">Profil Saya<i class="fa fa-chevron-right panah" aria-hidden="true"></i></a>
+				  <a href="/laporan_list/" class="list-group-item">Laporan Saya<i class="fa fa-chevron-right panah" aria-hidden="true"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<ol class="breadcrumb">
+			  <li><a href="#">Laporan</a></li>
+			  <li class="active">List</li>
+			</ol>
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			  	<ul class="action">
+			  		<li><a href="/laporan_list/"><i class="fa fa-list-ul" aria-hidden="true"></i> List</a></li>&emsp;&emsp;
+				  	<li><a href="/laporan_add/"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</a></li>
+			  	</ul>
+			  </div>
+			  <div class="panel-body">
+			  	<h4>List Laporan Wadul :</h4>
+			  	<hr>
+			  	<div class="col-md-12">
+			  		<table class="table table-striped">
+				    <thead>
+				      <tr>
+				        <th>No</th>
+				        <th>Title</th>
+				        <th>Created On</th>
+				        <th>Action</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr>
+				        <td>1</td>
+				        <td>Terdapat Jalan yang Berlubang</td>
+				        <td>19/10/2017</td>
+				        <td>
+				        	<a href="#" class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  			<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				        </td>
+				      </tr>
+				      <tr>
+				        <td>2</td>
+				        <td>Terdapat Jalan yang Berlubang</td>
+				        <td>19/10/2017</td>
+				        <td>
+				        	<a href="#" class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  			<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				        </td>
+				      </tr>
+				      <!-- <tr>
+				        <td>3</td>
+				        <td>Terdapat Jalan yang Berlubang</td>
+				        <td>19/10/2017</td>
+				        <td>
+				        	<a href="#" class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  			<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				        </td>
+				      </tr>
+				      <tr>
+				        <td>4</td>
+				        <td>Terdapat Jalan yang Berlubang</td>
+				        <td>19/10/2017</td>
+				        <td>
+				        	<a href="#" class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  			<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				        </td>
+				      </tr> -->
+				    </tbody>
+				  </table>
+			  	</div>
+			  	
+			    <!-- <div class="col-md-4">
+			    	<a href="#" class="link-list">
+			    	<div class="list">
+			    		<h5>Terdapat Keruskan Jalan</h5>
+			    		<hr>
+			    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			    		tempor incididunt ut labore et dolore magna aliqua.</p>
+			    	</div>
+			    	</a>
+			    </div>
+			    <div class="col-md-4">
+			    	<a href="#" class="link-list">
+			    	<div class="list">
+			    		<h5>Terdapat Keruskan Jalan</h5>
+			    		<hr>
+			    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			    		tempor incididunt ut labore et dolore magna aliqua.</p>
+			    	</div>
+			    	</a>
+			    </div>
+			    <div class="col-md-4">
+			    	<a href="#" class="link-list">
+			    	<div class="list">
+			    		<h5>Terdapat Keruskan Jalan</h5>
+			    		<hr>
+			    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			    		tempor incididunt ut labore et dolore magna aliqua.</p>
+			    	</div>
+			    	</a>
+			    </div>
+			    <div class="col-md-4">
+			    	<a href="#" class="link-list">
+			    	<div class="list">
+			    		<h5>Terdapat Keruskan Jalan</h5>
+			    		<hr>
+			    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			    		tempor incididunt ut labore et dolore magna aliqua.</p>
+			    	</div>
+			    	</a>
+			    </div>
+			    <div class="col-md-4">
+			    	<a href="#" class="link-list">
+			    	<div class="list">
+			    		<h5>Terdapat Keruskan Jalan</h5>
+			    		<hr>
+			    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			    		tempor incididunt ut labore et dolore magna aliqua.</p>
+			    	</div>
+			    	</a>
+			    </div>
+			    <div class="col-md-4">
+			    	<a href="#" class="link-list">
+			    	<div class="list">
+			    		<h5>Terdapat Keruskan Jalan</h5>
+			    		<hr>
+			    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			    		tempor incididunt ut labore et dolore magna aliqua.</p>
+			    	</div>
+			    	</a>
+			    </div> -->
+			    <center>
+				  <ul class="pagination">
+				    <li>
+				      <a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    <li><a href="#">1</a></li>
+				    <li><a href="#">2</a></li>
+				    <li><a href="#">3</a></li>
+				    <li><a href="#">4</a></li>
+				    <li><a href="#">5</a></li>
+				    <li>
+				      <a href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				  </ul>
+				  </center>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}
