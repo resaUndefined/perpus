@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from perpusApp import views
+from userApp.views import LogoutView
 
 urlpatterns = [
 	url(r'^$', views.Index),
     url(r'^admin/', admin.site.urls),
-    url(r'^siswa/', include('userApp.urls')),
+    url(r'^login/', include('userApp.urls')),
+    url(r'^logout/$',LogoutView),
 ]

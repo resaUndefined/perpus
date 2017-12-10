@@ -5,8 +5,14 @@ from userApp import views
 
 urlpatterns = [
    	url(r'^$', views.Anggota),
-   	#url(r'^anggota/(?P<id>[0-9]+)/$', views.LoginView),
-   	url(r'^login/$', views.LoginView),
+   	url(r'^siswa/$', views.PanelView),
+   	url(r'^siswa/akses/$', views.hakAksesView),
+    url(r'^siswa/pass/$', views.hakAksesViewUbah),
+   	url(r'^siswa/ubah-password/$', views.hakAksesUbah),
+    url(r'^siswa/edit/(?P<id>[0-9]+)/$', views.editAnggota),
+    #url(r'^logout/$',LogoutView),
+   	#url(r'^logout/$',LogoutView),
+   	#url(r'^siswa/(?P<id>[0-9]+)/$', views.PanelView),
     #url(r'^buku/$', views.buku),
     #url(r'^buku/add/$', views.tambah_buku),
     #url(r'^buku/edit/(?P<id_buku>[0-9]+)$', views.edit_buku),

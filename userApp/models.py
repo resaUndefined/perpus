@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from django.db.models.signals import post_save
 
 # Create your models here.
 
@@ -40,20 +41,26 @@ class Anggota(models.Model):
     alamat = models.TextField(blank=True, null=True)
     foto = models.ImageField(upload_to='statis/image_anggota',
                              blank=True, null=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     ttl = models.DateField('Tanggal Lahir', max_length=8, null=True,blank=True)
-    
+
     class Meta:
     	verbose_name_plural = "Anggota"
 
-    def __unicode__(self):
-    	return self.nama
+def __unicode__(self):
+    return self.nama
+
+#def create_profile(sender, **kwargs):
+#    if kwargs['created']:
+  #      anggota = Anggota.objects.create(user=kwargs['instance'])
+
+#post_save.connect(create_profile, sender=User)
 
 
 class Petugas(models.Model):
 	kd_petugas = models.CharField(max_length=10,unique=True)
 	nama = models.CharField(max_length=100, null=True, blank=True)
-	user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	jk = models.CharField('Jenis Kelamin',max_length=20,choices=JK_CHOICES,
 						default='laki', null=True, blank=True)
 	alamat = models.TextField(blank=True,null=True)

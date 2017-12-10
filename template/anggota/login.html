@@ -31,9 +31,9 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form method="POST">
+            <form method="POST" action="/login/siswa/">
               {% csrf_token %}
-              {{ form.as_p }}
+              
               <h1>Login Siswa</h1>
               <div>
                 <input type="text" id="uname" name="uname" class="form-control" placeholder="Username" required="" />

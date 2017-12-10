@@ -59,10 +59,14 @@
         	<li><a class="cool-link" href="/login/">LOGIN&ensp;<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
         	
         	<li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&ensp;LoremIpsum&ensp;<span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&ensp;{{user.anggota.nama}}&ensp;<span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="/profile_view/"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&ensp;Dashboard</a></li>
-	            <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&ensp;Logout</a></li>
+	            <li><a href="/login/siswa/"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&ensp;Dashboard</a></li>
+              {% if request.user.is_authenticated %}
+	            <li><a href="/logout/"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&ensp;Logout</a></li>
+              {% else %}
+          <li><a href="/login/"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&ensp;login</a></li>
+            {% endif %}
 	          </ul>
 	        </li>
       	</ul>
