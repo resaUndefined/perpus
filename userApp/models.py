@@ -39,7 +39,7 @@ class Anggota(models.Model):
     agama = models.CharField('Agama', max_length=20,choices=AGAMA_CHOICES,
     						default='islam', null=True, blank=True)
     alamat = models.TextField(blank=True, null=True)
-    foto = models.ImageField(upload_to='statis/image_anggota',
+    foto = models.ImageField(upload_to='image_anggota/',
                              blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ttl = models.DateField('Tanggal Lahir', max_length=8, null=True,blank=True)
@@ -47,8 +47,8 @@ class Anggota(models.Model):
     class Meta:
     	verbose_name_plural = "Anggota"
 
-def __unicode__(self):
-    return self.nama
+    def __unicode__(self):
+        return self.nama
 
 #def create_profile(sender, **kwargs):
 #    if kwargs['created']:

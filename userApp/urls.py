@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^siswa/pass/$', views.hakAksesViewUbah),
    	url(r'^siswa/ubah-password/$', views.hakAksesUbah),
     url(r'^siswa/edit/(?P<id>[0-9]+)/$', views.editAnggota),
+    url(r'^siswa/riwayat/$', views.riwayatView),
     #url(r'^logout/$',LogoutView),
    	#url(r'^logout/$',LogoutView),
    	#url(r'^siswa/(?P<id>[0-9]+)/$', views.PanelView),

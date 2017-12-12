@@ -76,15 +76,14 @@ class Rak(models.Model):
         return self.nama_rak
 
 
-# katalog : isbn, jumlah,jdl_buku,thn_terbit,foto_sampul,
 class Katalog(models.Model):
-    isbn = models.CharField(max_length=15, unique=True)
+    isbn = models.CharField(max_length=50, unique=True)
     kd_buku = models.CharField(max_length=5,unique=True, null=True)
     jdl_buku = models.CharField(max_length=200,null=True,blank=True)
     jumlah = models.IntegerField(null=True,blank=True)
     slug = models.CharField(max_length=200, null=True,blank=True)
     thn_terbit = models.CharField(max_length=4,null=True)
-    foto_sampul = models.ImageField(upload_to='statis/image_katalog',
+    foto_sampul = models.ImageField(upload_to='image_katalog/',
                                     blank=True, null=True)
     penerbit = models.ForeignKey(Penerbit, related_name='penerbit_katalog',
                                  null=True)
@@ -101,9 +100,8 @@ class Katalog(models.Model):
         return self.jdl_buku
 
 
-# buku : status, kondisi,kd_buku
 class Buku(models.Model):
-	kd_itemBuku = models.CharField(max_length=10,unique=True, null=True)
+	kd_buku = models.CharField('Kode Buku',max_length=10,unique=True, null=True)
 	status = models.CharField('Status Buku',max_length=15,
 			choices=STATUS_CHOICES, default='tersedia',blank=True)
 	kondisi = models.CharField('Kondisi Buku',max_length=15,
@@ -116,9 +114,6 @@ class Buku(models.Model):
 	def __unicode__(self):
 		return self.kd_buku
 
-# sirkulasi : kd_sirkulasi, tgl_kembali, lama_pinjam, jml_pinjam
-	# denda, status, tgl_pesan, tgl_pinjam
-# detail_sirkulasi : id_detail_sirkulasi, (kd_buku,kd_sirkulasi)
 class Sirkulasi(models.Model):
 	kd_sirkulasi = models.CharField(max_length=10,unique=True)
 	anggota = models.ForeignKey(Anggota, related_name='anggota_sirkulasi',

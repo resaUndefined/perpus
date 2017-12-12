@@ -94,5 +94,9 @@ def editAnggota(request, id):
 	data = {
 		'form': form,
 	}
-	return render(request, 'anggota/formUbah.html', data) 
+	return render(request, 'anggota/formUbah.html', data)
+
+def riwayatView(request):
+
+	return render(request, 'anggota/riwayat.html')
 	 

@@ -10,16 +10,16 @@
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/static/admin/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
-   <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+   <link href="/static/admin/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="/static/admin/build/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -28,7 +28,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-book"></i> <span>Dashbord Siswa</span></a>
+              <a href="/login/siswa/" class="site_title"><i class="fa fa-book"></i> <span>Dashbord Siswa</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -40,7 +40,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2>{{user.anggota.nama}}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -52,13 +52,13 @@
               <div class="menu_section">
                 <h3>My Panel</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home</a>
+                  <li><a href="/login/siswa/"><i class="fa fa-home"></i> Home</a>
                     
                   </li>
-				  <li><a><i class="fa fa-shield"></i> Hak Akses</a>
+          <li><a href="/login/siswa/akses/"><i class="fa fa-shield"></i> Hak Akses</a>
                     
                   </li>
-                  <li><a><i class="fa fa-history"></i> Riwayat</a>
+                  <li><a href="/login/siswa/riwayat/"><i class="fa fa-history"></i> Riwayat</a>
                     
                   </li>
                   
@@ -99,19 +99,12 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="images/img.jpg" alt="">{{user.anggota.nama}}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="/">Homepage</a></li>
+                    <li><a href="/logout/"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -127,7 +120,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Tables <small>Some examples to get you started</small></h3>
+                <h3>Tabel <small>Riwayat Peminjaman Anda</small></h3>
               </div>
 
               <div class="title_right">
@@ -355,17 +348,17 @@
     </div>
 
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/static/admin/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="/static/admin/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
+    <script src="/static/admin/vendors/nprogress/nprogress.js"></script>
     <!-- iCheck -->
-    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <script src="/static/admin/vendors/iCheck/icheck.min.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="/static/admin/build/js/custom.min.js"></script>
   </body>
 </html>

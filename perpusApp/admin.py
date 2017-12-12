@@ -14,10 +14,17 @@ class KatalogAdmin(admin.ModelAdmin):
 	search_fields = ('isbn','jdl_buku','thn_terbit','penerbit','penulis')
 	prepopulated_fields = {'slug' : ('jdl_buku',)}
 
+
+class BukuAdmin(admin.ModelAdmin):
+	list_display = ('kd_buku','status','kondisi')
+	list_filter = ('status','kondisi')
+	# search_fields = ('kd_buku')
+
+admin.site.site_header = 'Perpustakaan Admin'
 admin.site.register(Kategori)
 admin.site.register(Penulis)
 admin.site.register(Penerbit)
 admin.site.register(Rak)
 admin.site.register(Katalog, KatalogAdmin)
-admin.site.register(Buku)
+admin.site.register(Buku,BukuAdmin)
 admin.site.register(Sirkulasi)
