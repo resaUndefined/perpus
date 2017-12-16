@@ -8,6 +8,7 @@ from perpusApp.models import Buku, Sirkulasi
 
 # Register your models here.
 class KatalogAdmin(admin.ModelAdmin):
+	list_per_page = 10
 	list_display = ('isbn','jdl_buku','jumlah','thn_terbit','penerbit',
 					'penulis','kategori','rak')
 	list_filter = ('thn_terbit','penerbit','penulis','kategori','rak')
@@ -16,9 +17,20 @@ class KatalogAdmin(admin.ModelAdmin):
 
 
 class BukuAdmin(admin.ModelAdmin):
-	list_display = ('kd_buku','status','kondisi')
-	list_filter = ('status','kondisi')
-	# search_fields = ('kd_buku')
+	list_per_page = 10
+	list_display = ('get_jdl_buku','kd_itemBuku','status','kondisi','rak_buku')
+	list_filter = ('status','kondisi','katalog__jdl_buku','katalog__rak')
+	search_fields = ('katalog__jdl_buku','kd_itemBuku')
+
+	def get_jdl_buku(self, obj):
+		return obj.katalog.jdl_buku
+	get_jdl_buku.short_description = 'Katalog'
+	get_jdl_buku.admin_order_field = 'katalog__jdl_buku'
+
+	def rak_buku(search_fields, obj):
+		return obj.katalog.rak
+		get_rak.short_description = 'Katalog'
+		get_rak.admin_order_field = 'katalog__rak'
 
 admin.site.site_header = 'Perpustakaan Admin'
 admin.site.register(Kategori)

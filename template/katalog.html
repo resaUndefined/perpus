@@ -228,19 +228,19 @@
 	<div class="row">
 	<hr class="batas">
 		<main>
-			{% for k in katalog %}
+			{% for buku in bk %}
 			<a href="/buku/{{k.slug}}/" title="Terdapat Jalan Berlubang">
 				<article>
-					<h4>{{k.jdl_buku}}</h4>
+					<h4>{{buku.katalog.jdl_buku}}</h4>
 					<center>
-					<span><i class="fa fa-book" aria-hidden="true"> Stok : {{k.jumlah}} &emsp;</i></span>
-					<span><i class="fa fa-calendar" aria-hidden="true">&ensp; Tahun Terbit : {{k.thn_terbit}}</i></span>
+					<span><i class="fa fa-book" aria-hidden="true"> Status : {{buku.status}} &emsp;</i></span>
+					<span><i class="fa fa-calendar" aria-hidden="true">&ensp; Kondisi : {{buku.kondisi}}</i></span>
 					</center>
 					<figure>
-						<img src="/media/{{k.foto_sampul}}" alt="{{k.jdl_buku}}">
+						<img src="/media/{{buku.katalog.foto_sampul}}" alt="{{buku.katalog.jdl_buku}}">
 						<figcaption></figcaption>
 					</figure>
-					<p style="text-align: center;">Klik gambar sampul buku yang ingin dipinjam untuk memilih kode buku yang akan dipinjam</p>
+					<p style="text-align: center;">{{buku.kd_itemBuku}}</p>
 					<hr>
 					<center>
 					<!-- <span class="notif"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&ensp;0&emsp;&emsp;&emsp;</span>

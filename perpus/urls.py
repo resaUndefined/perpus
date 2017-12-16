@@ -17,10 +17,13 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from perpusApp import views
 from userApp.views import LogoutView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
 	url(r'^$', views.Index),
+    url(r'^buku/', include('perpusApp.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^login/', include('userApp.urls')),
     url(r'^logout/$',LogoutView),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

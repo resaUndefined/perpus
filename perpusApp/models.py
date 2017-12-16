@@ -99,9 +99,14 @@ class Katalog(models.Model):
     def __unicode__(self):
         return self.jdl_buku
 
+    def save(self, *args, **kwargs):
+    	for i in range(self.jumlah):
+    		self.buku.kd_itemBuku = (self.kd_buku + str(i+1))
+    		super(Katalog, self).save(*args, **kwargs)
+
 
 class Buku(models.Model):
-	kd_buku = models.CharField('Kode Buku',max_length=10,unique=True, null=True)
+	kd_itemBuku = models.CharField('Kode Buku',max_length=10,unique=True, null=True)
 	status = models.CharField('Status Buku',max_length=15,
 			choices=STATUS_CHOICES, default='tersedia',blank=True)
 	kondisi = models.CharField('Kondisi Buku',max_length=15,
@@ -110,9 +115,10 @@ class Buku(models.Model):
 
 	class Meta:
 		verbose_name_plural = "Buku"
+	# list_filter = ('katalog__jdl_buku','status','kondisi',)
 
 	def __unicode__(self):
-		return self.kd_buku
+		return self.kd_itemBuku
 
 class Sirkulasi(models.Model):
 	kd_sirkulasi = models.CharField(max_length=10,unique=True)

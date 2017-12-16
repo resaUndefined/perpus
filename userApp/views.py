@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from userApp.models import Anggota
 from django.shortcuts import render,render_to_response,redirect
 from django.http import HttpResponse
 from django.template import RequestContext
-import datetime
+# import datetime
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import authenticate, logout, login
@@ -22,7 +19,11 @@ def Anggota(request):
 	data = {
 				'user' : request.user,
 			}
-	return render(request, 'anggota/login.html',data)
+	if request.user.is_authenticated():
+		
+		return render(request,'anggota/form.html',data)
+	else:
+		return render(request, 'anggota/login.html',data)
 
 #@login_required(login_url='/login/')
 def PanelView(request):
