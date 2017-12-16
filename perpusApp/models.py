@@ -101,7 +101,7 @@ class Katalog(models.Model):
 
     def save(self, *args, **kwargs):
     	for i in range(self.jumlah):
-    		self.buku.kd_itemBuku = (self.kd_buku + str(i+1))
+    		self.katalog.kd_itemBuku = (self.kd_buku + str(i+1))
     		super(Katalog, self).save(*args, **kwargs)
 
 
