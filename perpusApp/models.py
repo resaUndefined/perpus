@@ -100,9 +100,11 @@ class Katalog(models.Model):
         return self.jdl_buku
 
     def save(self, *args, **kwargs):
+    	super(Katalog, self).save(*args, **kwargs)
     	for i in range(self.jumlah):
-    		self.katalog.kd_itemBuku = (self.kd_buku + str(i+1))
-    		super(Katalog, self).save(*args, **kwargs)
+    		self.buku_katalog.create(kd_itemBuku = self.kd_buku
+    			+ str(i+1))
+    		
 
 
 class Buku(models.Model):
