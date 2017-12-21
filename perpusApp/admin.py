@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-
 from django.contrib import admin
 from perpusApp.models import Kategori, Penulis, Penerbit, Rak, Katalog
 from perpusApp.models import Buku, Sirkulasi
@@ -14,7 +12,7 @@ class KatalogAdmin(admin.ModelAdmin):
 					'penulis','kategori','rak')
 	list_filter = ('thn_terbit','penerbit','penulis','kategori','rak')
 	search_fields = ('isbn','jdl_buku','thn_terbit','penerbit','penulis')
-	prepopulated_fields = {'slug' : ('jdl_buku',)}
+	# prepopulated_fields = {'slug' : ('jdl_buku',)}
 
 
 class BukuAdmin(admin.ModelAdmin):

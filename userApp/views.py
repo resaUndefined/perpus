@@ -4,7 +4,7 @@ from userApp.models import Anggota
 from django.shortcuts import render,render_to_response,redirect
 from django.http import HttpResponse
 from django.template import RequestContext
-# import datetime
+from django.utils.text import slugify
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import authenticate, logout, login

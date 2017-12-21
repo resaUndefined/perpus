@@ -2,8 +2,10 @@ from django.conf.urls import url, include
 from perpusApp import views
 
 urlpatterns = [
-	url(r'^$', views.Index),
-  url(r'^(?P<slug>[\w-]+)/$', views.katalogView),
+	url(r'^buku/$', views.Index),
+  url(r'^buku/(?P<slug>[\w-]+)/$', views.katalogView),
+  url(r'^cara-memesan/$', views.caraMeminjamBuku),
+  url(r'^aturan-peminjaman/$', views.aturanMeminjamBuku),
    	# url(r'^$', views.Anggota),
    	# url(r'^siswa/$', views.PanelView),
    	# url(r'^siswa/akses/$', views.hakAksesView),

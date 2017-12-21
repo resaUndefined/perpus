@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 	url(r'^$', views.Index),
-    url(r'^buku/', include('perpusApp.urls')),
+    url(r'^', include('perpusApp.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^login/', include('userApp.urls')),
     url(r'^logout/$',LogoutView),

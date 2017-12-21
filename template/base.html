@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    {% block title %}
-	  {% endblock title %}
+    <title>Perpus Online</title>
     
     <link rel="shortcut icon" href="/static/img/book.png">
 
@@ -42,15 +41,25 @@
     <div class="collapse navbar-collapse oswaldbold" id="bs-example-navbar-collapse-1">
       <div class="navbar-right">
       	<ul class="nav navbar-nav">
+          <!-- kode untuk menambahkan kategori -->
+          <li class="cool-link"><a  href="#" class="dropdown" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Kategori
+              <span class="caret"></span>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                {% for cat in cate %}
+                <li><a href="/buku/{{cat.id}}/" class="cool-link">{{cat.nama_kategori}}</a></li>
+                <!-- <li><a href="#" class="cool-link">Aturan Pemesanan</a></li> -->
+                {% endfor %}
+              </ul>
+          </a></li>
+
         	<li class="cool-link"><a  href="#" class="dropdown" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-           
-              
               Help
               <span class="caret"></span>
           
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#" class="cool-link">Cara Memesan</a></li>
-                <li><a href="#" class="cool-link">Aturan Pemesanan</a></li>
+                <li><a href="/cara-memesan/" class="cool-link">Cara Meminjam Buku</a></li>
+                <li><a href="/aturan-peminjaman/" class="cool-link">Aturan Peminjaman</a></li>
               </ul>
            
           </a></li>

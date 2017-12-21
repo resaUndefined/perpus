@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
+<!-- {% block title %}
+<title>Perpus Online</title>
+{% endblock title %}
+ -->
 {% block content %}
+
 <div class="container">
 	<div class="row">
 		<div class="box-box">
@@ -72,6 +77,8 @@
 							</a>
 						    </div>
 						  </div>
+
+						  
 						  <a class="left" href="#carousel-example-generic" role="button" data-slide="prev">
 						    <span class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
 						    <span class="sr-only">Previous</span>
@@ -87,75 +94,36 @@
 		</div>
 	</div>
 </div>
-
+						<!-- Konten Penulisan aturan peminjaman -->
 <div class="container-fluid">
 	<div class="row">
 	<hr class="batas">
-		<main>
-			{% for k in katalog %}
-			<a href="/buku/{{k.slug}}/" title="Terdapat Jalan Berlubang">
-				<article>
-					<h4>{{k.jdl_buku}}</h4>
-					<center>
-					<span><i class="fa fa-book" aria-hidden="true"> Stok : {{k.jumlah}} &emsp;</i></span>
-					<span><i class="fa fa-calendar" aria-hidden="true">&ensp; Tahun Terbit : {{k.thn_terbit}}</i></span>
-					</center>
-					<figure>
-						<img src="/media/{{k.foto_sampul}}" alt="{{k.jdl_buku}}">
-						<figcaption></figcaption>
-					</figure>
-					<p style="text-align: center;">Klik gambar sampul buku yang ingin dipinjam untuk memilih kode buku yang akan dipinjam</p>
-					<hr>
-					<center>
-					</center>
-				</article>
-			</a>
-			{% endfor %}
-		</main>
+	<div class="col-md-2">
+		
 	</div>
-	<div class="row">
-		<center>
-			<!-- <nav aria-label="Page navigation">
-			  <ul class="pagination pagination-lg">
-			    <li>
-			      <a href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li><a href="#">1</a></li>
-			    <li><a href="#">2</a></li>
-			    <li><a href="#">3</a></li>
-			    <li><a href="#">4</a></li>
-			    <li><a href="#">5</a></li>
-			    <li>
-			      <a href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
-			</nav> -->
-			{% if kata.has_other_pages %}
-  <ul class="pagination">
-    {% if kata.has_previous %}
-      <li><a href="?page={{ kata.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in kata.paginator.page_range %}
-      {% if kata.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if kata.has_next %}
-      <li><a href="?page={{ kata.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
-		</center>
-	</div>
-</div>
+		<div class="col-md-8">
+			<h2 style="text-align: center;font-family: cursive;">Aturan Meminjam Buku Di Perpustakaan SMP N 3 Kalasan</h2>
+			<p style="text-align: justify;font-size: 16px;font-family: cursive;">Perpustakaan di SMP N 3 Kalasan sudah menggunakan teknologi informasi dalam proses peminjaman maupun
+			proses pengarsipan data-data penting yang ada di SMP N 3 Kalasan. Di Perpustakaan SMP N 3 Kalasan ini
+		dalam proses peminjaman bukunya dapat dilakukan secara offline maupun online, di mana yang dimaksud offline adalah proses peminjaman yang seperti pada umumnya yaitu datang ke perpustakaan secara langsung, untuk online siswa dapat melakukan proses peminjaman di mana saja. Dalam proses peminjaman buku tentu tidak asal pinjam dan yang lainnya, setiap perpustakaan pasti memiliki aturan dalam proses peminjaman buku, berikut adalah beberapa peraturan yang harus dipatuhi oleh setiap siswa yang ingin meminjam buku di perpustakaan : </p>
+		<hr class="batas">
+		<!-- <h4 style="text-align: justify; font-weight: bold;font-family: cursive;">1. Cara Meminjam Buku Secara Offline</h4> -->
+			<ol style="text-align: justify;font-size: 16px; font-family: cursive;">
+				<li>Lama Peminjaman Buku 7 hari dari hari peminjaman</li>
+				<li>Jika waktu pengembalian buku melebihi batas waktu peminjaman buku, maka akan dikenakan denda sebesar Rp. 100,00 x jumlah hari x jumlah buku yang dipinjam</li>
+				<li>Jumlah maksimal buku yang boleh dipinjam adalah 3 buah buku</li>
+				<li>Tidak diperkenankan menandai buku dengan cara melipat, mencoret, menggaris bawahi, atau hal lain yang dapat merusak dan mengotori buku</li>
+				<li>Bila buku yang dipinjam hilang, peminjam dikenakan ganti rugi berupa buku yang sama atau membayar seharga buku yang hilang tersebut</li>
+				<li>Peraturan peminjaman buku perpustakaan agar ditaati dan dilaksanakan sebaik-baiknya apabila ada pertanyaan silakan ditanyakan pada kontak yang telah disediakan</li>
+			</ol><br>
+			<p style="text-align: justify;font-size: 16px;font-family: cursive;">Mari kita jaga buku sebaik-baiknya. Karena buku adalah jendela dunia. Buka dunia, buka buku</p>
+			<br><br><br>
+			<p style="text-align: right;font-size: 16px;font-family: cursive;">Yogyakarta, 20 Desember 2017</p>
+			<br><br>
+			<p style="text-align: right;font-size: 16px;font-family: cursive;">Kepala Sekolah - SMP N 3 Kalasan</p>
+		</div>
+		<div class="col-md-2">
+		
+	</div>	
+	</div></div>
 {% endblock content %}
