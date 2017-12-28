@@ -58,7 +58,7 @@
           <li><a href="/login/siswa/akses/"><i class="fa fa-shield"></i> Hak Akses</a>
                     
                   </li>
-                  <li><a href="/login/siswa/riwayat/"><i class="fa fa-history"></i> Riwayat</a>
+                  <li><a href="/login/siswa/riwayat/{{user.anggota.id}}/"><i class="fa fa-history"></i> Riwayat</a>
                     
                   </li>
                   
@@ -153,14 +153,16 @@
                             <th>
                               <input type="checkbox" id="check-all" class="flat">
                             </th>
-                            <th class="column-title">Invoice </th>
-                            <th class="column-title">Invoice Date </th>
-                            <th class="column-title">Order </th>
-                            <th class="column-title">Bill to Name </th>
-                            <th class="column-title">Status </th>
-                            <th class="column-title">Amount </th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
+                            <th class="column-title">Kode Sirkulasi</th>
+                            <th class="column-title">Tanggal Pesan</th>
+                            <th class="column-title">Tanggal Pinjam</th>
+                            <th class="column-title">Tanggal Kembali </th>
+                            <th class="column-title">Jumlah Pinjam</th>
+                            <th class="column-title">Denda</th>
+                            <th class="column-title">Status</th>
+                            <!-- <th class="column-title">Buku</th> -->
+                           <!--  <th class="column-title no-link last"><span class="nobr">Action</span>
+                            </th> -->
                             <th class="bulk-actions" colspan="7">
                               <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                             </th>
@@ -168,20 +170,27 @@
                         </thead>
 
                         <tbody>
+                          {% for s in sir %}
                           <tr class="even pointer">
                             <td class="a-center ">
                               <input type="checkbox" class="flat" name="table_records">
                             </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
+                            <td class=" " >{{s.kd_sirkulasi}}</td>
+                            {% if s.tgl_pesan is not None %}
+                            <td class=" last">{{s.tgl_pesan |date:"d M, Y"}}</td>
+                            {% else %}
+                            <td class=" last">Tidak melalui Pesan</td>
+                            {% endif %}
+                            <td class=" ">{{s.tgl_pinjam |date:"d M, Y"}}</td>
+                            <td class=" ">{{s.tgl_kembali |date:"d M, Y"}}</td>
+                            <td class=" ">{{s.jumlah_pinjam}}</td>
+                            <td class=" ">Rp. {{s.denda}}</td>
+                            <td class=" ">{{s.status}}</td>
+                            <!-- <td class="a-right a-right ">$7.45</td> -->
+                            
                           </tr>
-                          <tr class="odd pointer">
+                          {% endfor %}
+                          <!-- <tr class="odd pointer">
                             <td class="a-center ">
                               <input type="checkbox" class="flat" name="table_records">
                             </td>
@@ -301,7 +310,7 @@
                             <td class="a-right a-right ">$741.20</td>
                             <td class=" last"><a href="#">View</a>
                             </td>
-                          </tr>
+                          </tr> -->
                         </tbody>
                       </table>
                     </div>

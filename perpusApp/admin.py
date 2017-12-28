@@ -17,7 +17,7 @@ class KatalogAdmin(admin.ModelAdmin):
 
 class BukuAdmin(admin.ModelAdmin):
 	list_per_page = 15
-	list_display = ('get_jdl_buku','kd_itemBuku','status','kondisi','rak_buku')
+	list_display = ('kd_itemBuku','status','kondisi')
 	ordering = ('kd_itemBuku',)
 	list_filter = ('status','kondisi','katalog__jdl_buku','katalog__rak')
 	search_fields = ('katalog__jdl_buku','kd_itemBuku')
@@ -32,31 +32,29 @@ class BukuAdmin(admin.ModelAdmin):
 		get_rak.short_description = 'Katalog'
 		get_rak.admin_order_field = 'katalog__rak'
 
-	# def get_queryset(self,request):
-	# 	queryset = super(BukuAdmin, self).get_queryset(request)
-	# 	queryset = queryset.order_by('get_jdl_buku')
-	# 	return queryset
+class SirkulasiAdmin(admin.ModelAdmin):
+	list_per_page = 15
+	list_display = ('kd_sirkulasi','nama_anggota','kode_Buku',
+		'tgl_pinjam','tgl_kembali','jumlah_pinjam','denda','status')
+	ordering = ('status',)
+	list_filter = ('status',)
+	search_fields = ('status','kd_sirkulasi','buku__kd_itemBuku')
+	fields = ('anggota', 'petugas','buku','tgl_pinjam','tgl_kembali',
+				'jumlah_pinjam',)
+	exclude = ('kd_sirkulasi','tgl_pesan','lama_pinjam','denda','status')
+	
+	def nama_anggota(self,obj):
+		return obj.anggota.nama
+		get_nama_anggota.short_description = "Anggota"
+		get_nama_anggota.admin_order_field = 'anggota__nama'
 
-# # class SirkulasiAdmin(admin.ModelAdmin):
-# # 	model = Sirkulasi
-# # 	list_display = ('kd_sirkulasi', 'get_nama_siswa', 'tgl_pinjam',
-# # 		'tgl_kembali','jumlah_pinjam','denda','status')
-# # 	fieldsets = (
-# # 		(None, {
-# # 			'fields': ('kd_sirkulasi', 'anggota')
-# # 			}),
-# # 		('Advanced options', {
-# # 			'classes': ('collapse',),
-# # 			'fields': ('buku',),
-# # 			}),
-# # 		)
+	def kd_bk(self,obj):
+		return obj.buku.kd_itemBuku
+		get_kd_bk.short_description = "Buku"
+		get_kd_bk.admin_order_field = 'buku__kd_itemBuku'
 
-# 	def get_nama_siswa(self,obj):
-# 		return obj.Anggota.nama
-# 		get_nama.short_description = 'Anggota'
-# 		get_nama.admin_order_field = "Anggota__nama"
-
-
+	def kode_Buku(self, obj):
+		return "\n".join([b.kd_itemBuku + "," for b in obj.buku.all()])
 
 admin.site.site_header = 'Perpustakaan Admin'
 admin.site.register(Kategori)
@@ -65,4 +63,4 @@ admin.site.register(Penerbit)
 admin.site.register(Rak)
 admin.site.register(Katalog, KatalogAdmin)
 admin.site.register(Buku,BukuAdmin)
-admin.site.register(Sirkulasi)
+admin.site.register(Sirkulasi, SirkulasiAdmin)

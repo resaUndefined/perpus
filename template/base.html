@@ -47,7 +47,7 @@
               <span class="caret"></span>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 {% for cat in cate %}
-                <li><a href="/buku/{{cat.id}}/" class="cool-link">{{cat.nama_kategori}}</a></li>
+                <li><a href="/kategori/{{cat.id}}/" class="cool-link">{{cat.nama_kategori}}</a></li>
                 <!-- <li><a href="#" class="cool-link">Aturan Pemesanan</a></li> -->
                 {% endfor %}
               </ul>
@@ -63,7 +63,7 @@
               </ul>
            
           </a></li>
-        	<li><a class="cool-link" href="/contact/">HUBUNGI KAMI</a></li>
+        	<li><a class="cool-link" href="/hubungi-kami/">HUBUNGI KAMI</a></li>
         	{% if request.user.is_authenticated %}
               <li><a href="/logout/"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&ensp;Logout</a></li>
           {% else %}

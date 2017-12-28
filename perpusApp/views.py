@@ -43,6 +43,20 @@ def katalogView(request,slug):
 	}
 	return render(request,'katalog.html',data)
 
+def kategoriView(request,id):
+	# katalog = Katalog.objects.all()
+	cate2 = Kategori.objects.get(id=id)
+	cate = Kategori.objects.all()
+	detailCate = Katalog.objects.filter(kategori=cate2)
+	data = {
+		# 'katalog' : katalog,
+		'cate'	  : cate,
+		'detailCate' : detailCate,
+		'cate2'	: cate2,
+		# 'bk'   : bk, 
+	}
+	return render(request,'kategori.html',data)
+
 def caraMeminjamBuku(request):
 	cate = Kategori.objects.all()
 	katalog = Katalog.objects.all().order_by('-thn_terbit')[:5]
@@ -62,3 +76,13 @@ def aturanMeminjamBuku(request):
 		'katalog' : katalog,
 	}
 	return render(request,'aturan_pinjam.html',data)
+
+def hubungiKami(request):
+	cate = Kategori.objects.all()
+	katalog = Katalog.objects.all().order_by('-thn_terbit')[:5]
+
+	data = {
+		'cate'	  : cate,
+		'katalog' : katalog,
+	}
+	return render(request,'contact.html',data)

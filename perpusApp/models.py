@@ -6,6 +6,7 @@ import datetime
 from decimal import Decimal
 from userApp.models import Anggota, Petugas
 from django.utils.text import slugify
+from django.dispatch import receiver
 # Create your models here.
 
 YEAR_CHOICES = []
@@ -13,21 +14,21 @@ for r in range(1980, (datetime.datetime.now().year+1)):
     YEAR_CHOICES.append((r, r))
 
 STATUS_CHOICES = (
-    ('tersedia', 'Tersedia'),
-    ('dipinjam', 'Dipinjam'),
+    ('Tersedia', 'Tersedia'),
+    ('Dipinjam', 'Dipinjam'),
 )
 
 STATUS_PINJAM_CHOICES = (
-    ('pesan', 'Dipesan'),
-    ('pinjam', 'Dipinjam'),
-    ('kembali', 'Kembali'),
-    ('telat', 'Telat'),
+    ('Dipesan', 'Dipesan'),
+    ('Dipinjam', 'Dipinjam'),
+    ('Kembali', 'Kembali'),
+    ('Telat', 'Telat'),
 )
 
 KONDISI_CHOICES = (
-    ('baik', 'Baik'),
-    ('rusak', 'Rusak'),
-    ('hilang', 'Hilang')
+    ('Baik', 'Baik'),
+    ('Rusak', 'Rusak'),
+    ('Hilang', 'Hilang')
 )
 
 
@@ -137,17 +138,18 @@ class Buku(models.Model):
 
 
 class Sirkulasi(models.Model):
-    kd_sirkulasi = models.CharField(max_length=10, unique=True)
+    kd_sirkulasi = models.CharField(max_length=50, unique=True, blank=True)
     anggota = models.ForeignKey(Anggota, related_name='anggota_sirkulasi',
                                 null=True)
     tgl_pesan = models.DateField(null=True, blank=True)
     petugas = models.ForeignKey(Petugas, related_name='petugas_sirkulasi',
                                 null=True)
-    buku = models.ManyToManyField(Buku)
+    buku = models.ManyToManyField(Buku, related_name='buku_sirkulasi',
+                                    blank=True)
     tgl_pinjam = models.DateField(null=True, blank=True)
     tgl_kembali = models.DateField(null=True, blank=True)
     lama_pinjam = models.IntegerField(null=True, blank=True)
-    jumlah_pinjam = models.IntegerField(null=True)
+    jumlah_pinjam = models.IntegerField(null=True, blank=True)
     denda = models.DecimalField(max_digits=20, decimal_places=2,
                                 default=Decimal('0.00'), null=True, blank=True)
     status = models.CharField('Status Sirkulasi', max_length=20, null=True,
@@ -159,25 +161,57 @@ class Sirkulasi(models.Model):
     def __unicode__(self):
         return self.kd_sirkulasi
 
-    def save(self, args, **kwargs):
+    def buku_dipinjam(self):
+        bukuPinjam = self.buku.all()
+        print bukuPinjam
+        print self.pk
+        for bp in bukuPinjam:
+            bp.status = 'Tersedia'
+            bp.save()
+
+    # def banyak_pinjam(self):
+    #     bukuBanyak = self.buku.all()
+    #     bb = bukuBanyak.count()
+    #     self.jumlah_pinjam = bb
+    #     self.save()
+
+    def save(self, *args, **kwargs):
         if self.tgl_kembali is not None:
-            self.kd_sirkulasi = datetime.datetime.now()
-            self.lama_pinjam = self.tgl_kembali.date() - self.tgl_pinjam.date()
-            self.denda = (self.lama_pinjam * 100 * self.jumlah_pinjam)
-            super(Sirkulasi, self).save(*args, **kwargs)
+            # self.kd_sirkulasi = datetime.datetime.now()
+            pjm = self.tgl_pinjam
+            pjm2 = pjm.day
+            kml = self.tgl_kembali
+            kml2 = kml.day
+            self.status = 'Kembali'
+            self.lama_pinjam = kml2 - pjm2 
             if self.lama_pinjam > 7:
-                for i in range(self.jumlah_pinjam):
-                    self.buku.update(status='telat')
+                lebihnya = self.lama_pinjam - 7
+                self.denda = (lebihnya * 100 * self.jumlah_pinjam)
+                super(Sirkulasi, self).save(*args, **kwargs)
             else:
-                for i in range(self.jumlah_pinjam):
-                    self.buku.update(status='kembali')
+                lebihnya = 0
+                self.denda = (lebihnya * 100 * self.jumlah_pinjam)
+                super(Sirkulasi, self).save(*args, **kwargs)
+                
+            self.buku_dipinjam()
         else:
-            self.kd_sirkulasi = datetime.now()
+            d = datetime.datetime.now().time()
+            jam = d.hour
+            menit = d.minute
+            sekon = d.second 
+            self.kd_sirkulasi = str(datetime.datetime.now().day) + str(datetime.datetime.now().month) + str(datetime.datetime.now().year) + str(jam) + str(menit) + str(sekon)
+            # self.banyak_pinjam()
+            self.status = 'Dipinjam'
             super(Sirkulasi, self).save(*args, **kwargs)
-            for i in range(self.jumlah_pinjam):
-                self.buku.update(status='Dipinjam')
+            
+            # for i in range(self.jumlah_pinjam):
+            #     self.bk.get_or_create(status='Dipinjam')
 
-
+@receiver(models.signals.m2m_changed, sender=Sirkulasi.buku.through)
+def sirkulasi_buku_simpan(sender, instance, **kwargs):
+    for b in instance.buku.all():
+        b.status = 'Dipinjam'
+        b.save()
 # class Detail_Sirkulasi(models.Model):
 #	sirkulasi = models.ForeignKey(Sirkulasi,
 #			related_name='sirkulasi_detail', null=True)

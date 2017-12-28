@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from userApp.models import Anggota
+from perpusApp.models import Sirkulasi
 from django.shortcuts import render,render_to_response,redirect
 from django.http import HttpResponse
 from django.template import RequestContext
@@ -97,7 +98,13 @@ def editAnggota(request, id):
 	}
 	return render(request, 'anggota/formUbah.html', data)
 
-def riwayatView(request):
-
-	return render(request, 'anggota/riwayat.html')
+def riwayatView(request,id): 
+	# ang = Anggota.objects.get(user=upk)
+	# anggo = Anggota.objects.get(id=id)
+	sir = Sirkulasi.objects.filter(anggota=id)
+	data = {
+		# 'anggo' : anggo,
+		'sir' : sir,
+	}
+	return render(request, 'anggota/riwayat.html',data)
 	 
