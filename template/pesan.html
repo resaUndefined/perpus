@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="box-box">
+			<div class="container">
+				<div class="row">
+					<div class="box-head">
+						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+						  <ol class="carousel-indicators">
+						    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+						    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+						  </ol>
+						  <div class="carousel-inner" role="listbox">
+						    <div class="item active">
+						      <a href="#" title="Terdapat Jalan Berlubang">
+								<div class="col-md-6">							
+									<img src="/static/img/image2.jpg" alt="image-1">
+								</div>
+								<div class="col-md-6 col-sm-6 hidden-sm hidden-xs">
+									<h2>Pintu Gerbang SMP N 3 Kalasan</h2>
+									<center>
+									<span><i class="fa fa-user" aria-hidden="true"> By loremIpsum &emsp;</i></span>
+									<span><i class="fa fa-calendar" aria-hidden="true">&ensp;12/12/2017</i></span>
+									</center>
+									<h4>SMP N 3 Kalasan terletak di Dukuh Sidokerto, Purwomartani, Kalasan, Sleman, Yogyakarta. Letak SMP N 3 Kalasan sendiri berbatasan dengan rumah warga, Sekolah Dasar, dan sawah. Lokasi SMP sangat strategis karena tidak berdekatan dengan pusat keramaian sehingga proses pembelajaran tidak akan terganggu. Akses ke SMP N 3 Kalasan dapat ditempuh dengan menggunakan sepeda ataupun sepeda motor, karena di sekitar SMP tidak ada kendaraan umum. SMP N 3 Kalasan, dilengkapi sarana dan prasarana penunjang pembelajaran yang memadai.
+									</h4>
+									<hr>
+									<div class="area-bottom">
+									</div>
+								</div>
+							</a>
+						    </div>
+						    <div class="item">
+						      <a href="#" title="Terdapat Jalan Berlubang">
+								<div class="col-md-6">							
+									<img src="/static/img/image3.jpg" alt="image-1">
+								</div>
+								<div class="col-md-6 col-sm-6 hidden-sm hidden-xs">
+									<h2>Perpustakaan SMP 3 Kalasan</h2>
+									<center>
+									<span><i class="fa fa-user" aria-hidden="true"> By loremIpsum &emsp;</i></span>
+									<span><i class="fa fa-calendar" aria-hidden="true">&ensp;12/12/2017</i></span>
+									</center>
+									<h4>SMP N 3 Kalasan ini memiliki perpustakaan yang digunakan untuk membaca serta meminjam buku. Buku yang terdapat di perpustakaan SMP N 3 Kalasan beragam, mulai dari buku pelajaran, novel, majalah serta buku-buku pengetahuan lainnya. Perpusatakaan SMP N 3 Kalasan sudah menggunakan komputer dalam pembuatan laporan, meskipun dalam proses pembukuan data-data anggota, buku dan proses peminjaman dan pengembalian masih ditulis tangan pada buku induk besar
+									</h4>
+									<hr>
+									<div class="area-bottom">
+									</div>
+								</div>
+							</a>
+						    </div>
+						    <div class="item">
+						      <a href="#" title="Terdapat Jalan Berlubang">
+								<div class="col-md-6">							
+									<img src="/static/img/image1.jpg" alt="image-1">
+								</div>
+								<div class="col-md-6 col-sm-6 hidden-sm hidden-xs">
+									<h2>Ekstrakulikuler Basket</h2>
+									<center>
+									<span><i class="fa fa-user" aria-hidden="true"> By loremIpsum &emsp;</i></span>
+									<span><i class="fa fa-calendar" aria-hidden="true">&ensp;12/12/2017</i></span>
+									</center>
+									<h4>SMP N 3 Kalasan memiliki berbagai macam cabang olah raga dalam ekstrakulikulernya, salah satu cabang olah raga yang paling populer dan sangat disukai oleh siswa nya adalah Basket. Lapangan yang memadai dan tergolong cukup layak untuk berlatih basket, maka cabang olah raga ini menjadi salah satu cabang ekstrakulikuler yang banyak peminatnya.
+									</h4>
+									<hr>
+									<div class="area-bottom">
+									</div>
+								</div>
+							</a>
+						    </div>
+						  </div>
+
+						  
+						  <a class="left" href="#carousel-example-generic" role="button" data-slide="prev">
+						    <span class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+						    <span class="sr-only">Previous</span>
+						  </a>
+						  <a class="right" href="#carousel-example-generic" role="button" data-slide="next">
+						    <span class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+						    <span class="sr-only">Next</span>
+						  </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+	<hr class="batas">
+	<h3 style="text-align: center;">Rincian Pemesanan Buku :</h3>
+	<center><img src="/media/{{bk.katalog.foto_sampul}}" style="width: 250px;" alt="gambar buku"></center>
+		<form class="form-horizontal" action="/aksi_tambah/" method="POST">
+			{% csrf_token %}
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Kode Sirkulasi</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="kd_sirkulasi" value="{{kd_sir}}" readonly="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">ID Anggota</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="anggota" value="{{user.anggota.pk}}" readonly="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Kode Buku</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="buku" value="{{bk.kd_itemBuku}}" readonly="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Pesan</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="tgl_pesan" value="{{pesan_date}}" readonly="">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" class="btn btn-default" value="Submit"></input>
+    </div>
+  </div>
+</form>
+	</div>
+	<!-- <div class="row">
+		<center>
+			<nav aria-label="Page navigation">
+			  <ul class="pagination pagination-lg">
+			    <li>
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			    <li>
+			      <a href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
+		</center>
+	</div> -->
+</div>
+{% endblock content %}

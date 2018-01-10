@@ -4,6 +4,8 @@ from perpusApp import views
 urlpatterns = [
 	url(r'^buku/$', views.Index),
   url(r'^buku/(?P<slug>[\w-]+)/$', views.katalogView),
+  url(r'^tambah_sirkulasi/(?P<kd_itemBuku>[\w-]+)/$', views.BukuPesanView),
+  url(r'^aksi_tambah/$', views.BukuPesanProses),
   url(r'^kategori/(?P<id>[0-9]+)/$', views.kategoriView),
   url(r'^hubungi-kami/$', views.hubungiKami),
   url(r'^cara-memesan/$', views.caraMeminjamBuku),

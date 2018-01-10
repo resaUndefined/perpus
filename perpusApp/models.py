@@ -121,10 +121,10 @@ class Buku(models.Model):
     kd_itemBuku = models.CharField(
         'Kode Buku', max_length=10, unique=True, null=True)
     status = models.CharField('Status Buku', max_length=15,
-                              choices=STATUS_CHOICES, default='tersedia',
+                              choices=STATUS_CHOICES, default='Tersedia',
                               blank=True)
     kondisi = models.CharField('Kondisi Buku', max_length=15,
-                               choices=KONDISI_CHOICES, default='baik',
+                               choices=KONDISI_CHOICES, default='Baik',
                                blank=True)
     katalog = models.ForeignKey(
         Katalog, related_name='buku_katalog', null=True)
@@ -143,7 +143,7 @@ class Sirkulasi(models.Model):
                                 null=True)
     tgl_pesan = models.DateField(null=True, blank=True)
     petugas = models.ForeignKey(Petugas, related_name='petugas_sirkulasi',
-                                null=True)
+                                null=True, blank=True)
     buku = models.ManyToManyField(Buku, related_name='buku_sirkulasi',
                                     blank=True)
     tgl_pinjam = models.DateField(null=True, blank=True)

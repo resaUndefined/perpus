@@ -4,6 +4,7 @@ from django.contrib import admin
 from perpusApp.models import Kategori, Penulis, Penerbit, Rak, Katalog
 from perpusApp.models import Buku, Sirkulasi
 from userApp.models import Anggota
+from rangefilter.filter import DateRangeFilter, DateTimeRangeFilter
 
 # Register your models here.
 class KatalogAdmin(admin.ModelAdmin):
@@ -12,6 +13,9 @@ class KatalogAdmin(admin.ModelAdmin):
 					'penulis','kategori','rak')
 	list_filter = ('thn_terbit','penerbit','penulis','kategori','rak')
 	search_fields = ('isbn','jdl_buku','thn_terbit','penerbit','penulis')
+	fields = ('isbn', 'kd_buku','jdl_buku','jumlah','thn_terbit',
+				'foto_sampul','penerbit','penulis','kategori','rak')
+	exclude = ('slug',)
 	# prepopulated_fields = {'slug' : ('jdl_buku',)}
 
 
@@ -19,7 +23,7 @@ class BukuAdmin(admin.ModelAdmin):
 	list_per_page = 15
 	list_display = ('kd_itemBuku','status','kondisi')
 	ordering = ('kd_itemBuku',)
-	list_filter = ('status','kondisi','katalog__jdl_buku','katalog__rak')
+	list_filter = ('status','kondisi','katalog__jdl_buku','katalog__rak',)
 	search_fields = ('katalog__jdl_buku','kd_itemBuku')
 
 	def get_jdl_buku(self, obj):
@@ -37,7 +41,8 @@ class SirkulasiAdmin(admin.ModelAdmin):
 	list_display = ('kd_sirkulasi','nama_anggota','kode_Buku',
 		'tgl_pinjam','tgl_kembali','jumlah_pinjam','denda','status')
 	ordering = ('status',)
-	list_filter = ('status',)
+	list_filter = ('status',('tgl_pinjam', DateRangeFilter), 
+					('tgl_kembali', DateTimeRangeFilter),)
 	search_fields = ('status','kd_sirkulasi','buku__kd_itemBuku')
 	fields = ('anggota', 'petugas','buku','tgl_pinjam','tgl_kembali',
 				'jumlah_pinjam',)
