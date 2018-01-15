@@ -141,13 +141,24 @@ def BukuPesanProses(request):
 			kd_sirkulasi = request.POST.get('kd_sirkulasi','')
 			anggota = request.POST.get('anggota','')
 			buku = request.POST.get('buku','')
-			tgl_pesan = request.POST.get('tgl_pesan','')
+			tgl_psn = request.POST.get('tgl_pesan','')
+			tgl_pesan = datetime.datetime.strptime(tgl_psn, '%b. %d, %Y')
 			stat = 'Dipesan'
-			sir_obj = Sirkulasi(kd_sirkulasi = kd_sirkulasi, anggota = anggota,
-								buku = buku, tgl_pesan = tgl_pesan, 
+			print kd_sirkulasi
+			print anggota
+			print buku
+			print tgl_pesan
+			print stat
+			# obj_buku = Buku.objects.get(kd_itemBuku=buku)
+			
+			sir_obj = Sirkulasi(kd_sirkulasi = kd_sirkulasi, anggota_id = anggota,
+								 tgl_pesan = tgl_pesan, 
 								status = stat)
+
 			sir_obj.save()
 			bk = Buku.objects.get(kd_itemBuku=buku)
+			print bk
+			sir_obj.buku.add(bk)
 			bk.status = 'Dipinjam'
 			# bk_status = bk.status
 			# bk_obj = Buku(status=bk_status)
