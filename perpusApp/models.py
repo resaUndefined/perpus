@@ -101,20 +101,19 @@ class Katalog(models.Model):
             super(Katalog, self).save(*args, **kwargs)
             for i in range(self.jumlah):
                 created = self.buku_katalog.get_or_create(
-                    kd_itemBuku=self.kd_buku + str(i+1))
-                # if created:
-                # 	self.buku_katalog.create(kd_itemBuku = self.kd_buku
-                # 	+ str(i+1))
-                # else:
-                # 	self.buku_katalog.update(kd_itemBuku = self.kd_buku
-                # 	+ str(i+1))
+                    kd_itemBuku=self.kd_buku + str(i+1))   
         else:
             self.slug = slugify(self.jdl_buku)
             super(Katalog, self).save(*args, **kwargs)
             for i in range(self.jumlah):
                 self.buku_katalog.create(kd_itemBuku=self.kd_buku
                                          + str(i+1))
-
+# if created:
+                #   self.buku_katalog.create(kd_itemBuku = self.kd_buku
+                #   + str(i+1))
+                # else:
+                #   self.buku_katalog.update(kd_itemBuku = self.kd_buku
+                #   + str(i+1))
 
 class Buku(models.Model):
     kd_itemBuku = models.CharField(

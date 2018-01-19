@@ -5,6 +5,8 @@ from perpusApp.models import Kategori, Penulis, Penerbit, Rak, Katalog
 from perpusApp.models import Buku, Sirkulasi
 from userApp.models import Anggota
 from rangefilter.filter import DateRangeFilter, DateTimeRangeFilter
+# from import_export import resources
+# from import_export.admin import ImportExportActionModelAdmin
 
 # Register your models here.
 class KatalogAdmin(admin.ModelAdmin):
@@ -21,7 +23,7 @@ class KatalogAdmin(admin.ModelAdmin):
 
 class BukuAdmin(admin.ModelAdmin):
 	list_per_page = 15
-	list_display = ('kd_itemBuku','status','kondisi')
+	list_display = ('kd_itemBuku','get_jdl_buku','status','kondisi')
 	ordering = ('kd_itemBuku',)
 	list_filter = ('status','kondisi','katalog__jdl_buku','katalog__rak',)
 	search_fields = ('katalog__jdl_buku','kd_itemBuku')
@@ -61,6 +63,22 @@ class SirkulasiAdmin(admin.ModelAdmin):
 	def kode_Buku(self, obj):
 		return "\n".join([b.kd_itemBuku + "," for b in obj.buku.all()])
 
+	# def SirkulasiPrintOut(ImportExportActionModelAdmin):
+	# 	pass
+
+# class SirkulasiResource(resources.ModelResource):
+
+#     class Meta:
+#         model = Sirkulasi
+#         fields = ('anggota', 'petugas','buku','tgl_pinjam','tgl_kembali',
+# 				'jumlah_pinjam',)
+
+
+# class SirkulasiPrintOut(ImportExportActionModelAdmin):
+# 	pass
+
+
+
 admin.site.site_header = 'Perpustakaan Admin'
 admin.site.register(Kategori)
 admin.site.register(Penulis)
@@ -68,4 +86,4 @@ admin.site.register(Penerbit)
 admin.site.register(Rak)
 admin.site.register(Katalog, KatalogAdmin)
 admin.site.register(Buku,BukuAdmin)
-admin.site.register(Sirkulasi, SirkulasiAdmin)
+admin.site.register(Sirkulasi,SirkulasiAdmin)

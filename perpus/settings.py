@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'perpusApp',
     'userApp',
     'rangefilter',
-    
+    # 'import_export',
 ]
 
 MIDDLEWARE = [

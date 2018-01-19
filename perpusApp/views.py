@@ -15,23 +15,11 @@ from perpusApp.forms import tambahSirkulasi
 # Create your views here.
 def Index(request):
 	cate = Kategori.objects.all()
-	katalog = Katalog.objects.all()#.order_by('-thn_terbit')[:5]
-	page = request.GET.get('page', 1)
-	paginator = Paginator(katalog, 4)
-
-	try:
-		kata = paginator.page(page)
-	except PageNotAnInteger:
-		kata = paginator.page(1)
-	except EmptyPage:
-		kata = paginator.page(paginator.num_pages)
-
+	katalog = Katalog.objects.all().order_by('-thn_terbit')[:15]
 	data = {
 		'cate'	  : cate,
 		'katalog' : katalog,
-		'kata'	  : kata,
 	}
-
 	return render(request, 'index.html',data)
 
 def katalogView(request,slug):
@@ -112,28 +100,6 @@ def BukuPesanView(request, kd_itemBuku):
 	return render(request, 'pesan.html',data)
 
 def BukuPesanProses(request):
-	# if request.method == 'POST':
-	# 	form = tambahSirkulasi(request.POST) 
-	# 	if form.is_valid():
-	# 		form.save()
-	# 		bk = Buku.objects.get(kd_itemBuku=buku)
-	# 		bk.status = 'Dipinjam'
-	# 		bk.save()
-	# 		return HttpResponseRedirect('/')
-	# 	else:
-	# 		print form.errors
-	# else:
-	# 	ktlg = Katalog.objects.get(slug=slug)
-	# 	cate = Kategori.objects.all()
-	# 	bk = Buku.objects.filter(katalog=ktlg)
-	# 	data = {
-	# 		'cate'	  : cate,
-	# 		'ktlg' : ktlg,
-	# 		'bk'   : bk,
-	# 		}
-
-	# 	return render(request, 'pesan.html',data)
-
 	if request.method == 'POST':
 		form = tambahSirkulasi(request.POST)
 		if form.is_valid():
@@ -149,19 +115,14 @@ def BukuPesanProses(request):
 			print buku
 			print tgl_pesan
 			print stat
-			# obj_buku = Buku.objects.get(kd_itemBuku=buku)
-			
 			sir_obj = Sirkulasi(kd_sirkulasi = kd_sirkulasi, anggota_id = anggota,
 								 tgl_pesan = tgl_pesan, 
 								status = stat)
-
 			sir_obj.save()
 			bk = Buku.objects.get(kd_itemBuku=buku)
 			print bk
 			sir_obj.buku.add(bk)
 			bk.status = 'Dipinjam'
-			# bk_status = bk.status
-			# bk_obj = Buku(status=bk_status)
 			bk.save()
 			return HttpResponseRedirect('/')
 		else:

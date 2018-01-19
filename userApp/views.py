@@ -36,17 +36,18 @@ def PanelView(request):
 		return render(request,'anggota/form.html',data)
 
 	if request.POST:
-		data = {
-				'user' : request.user,
-			}
 		username = request.POST.get('uname')
 		password = request.POST.get('pass')
 		is_auth = authenticate(username=username,password=password)
 		if is_auth is not None:
+			data = {
+				'user' : request.user,
+			}
 			login(request,is_auth)
 			return render(request,'anggota/form.html',data)
 		else:
-			print ("gagal login, silakan cek username dan password anda")
+			messages.warning(
+                request, 'Gagal. Silahkan cek user dan password anda')
 	return render(request,'anggota/login.html')
 
 def LogoutView(request):
