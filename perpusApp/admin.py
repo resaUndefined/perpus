@@ -44,7 +44,7 @@ class SirkulasiAdmin(admin.ModelAdmin):
 		'tgl_pinjam','tgl_kembali','jumlah_pinjam','denda','status')
 	ordering = ('status',)
 	list_filter = ('status',('tgl_pinjam', DateRangeFilter), 
-					('tgl_kembali', DateTimeRangeFilter),)
+					('tgl_kembali', DateRangeFilter),)
 	search_fields = ('status','kd_sirkulasi','buku__kd_itemBuku')
 	fields = ('anggota', 'petugas','buku','tgl_pinjam','tgl_kembali',
 				'jumlah_pinjam',)
